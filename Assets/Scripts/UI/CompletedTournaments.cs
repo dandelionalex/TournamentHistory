@@ -4,7 +4,7 @@ using Model;
 
 namespace UI
 {
-    public class CompletedTournaments : MonoBehaviour
+    public class CompletedTournaments : WindowBase
     {
         [SerializeField]
         private TournamentRenderer tounamentRendererPrefab;

@@ -32,8 +32,20 @@ namespace UI
         public void Init(ParticipantModel model)
         {
             scorePosition.text = model.ScorePosition.ToString();
-            Debug.Log($"icon is: {model.AvatarId}");
             avatar.sprite = iconsList.GetIcon(model.AvatarId);
+            nickName.text = model.DisplayName;
+            score.text = model.Score.ToString();
+            
+            if(model.PrizeAmountGems > 0)
+            {
+                prizeObject.SetActive(true);
+                prize.text = model.PrizeAmountGems.ToString();
+            }
+            else
+            {
+                prizeObject.SetActive(false);
+                prize.text = string.Empty;
+            }
         }
     }
 }

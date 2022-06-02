@@ -2,6 +2,7 @@ using UnityEngine;
 using Newtonsoft.Json;
 using Model;
 using UI;
+using Managers;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -19,7 +20,7 @@ public class TestRun : MonoBehaviour
     [ContextMenu("LoadTournamentList")]
     private async void LoadData()
     {
-        var task = NetworkLogic.GetListAsync();
+        var task = NetworkManager.GetListAsync();
         await task;
 
         Debug.Log($"task {task.Result}");
@@ -49,7 +50,7 @@ public class TestRun : MonoBehaviour
 
     private async Task<string> LoadLeaderboard(string id)
     {
-        var task = await NetworkLogic.GetTournamentDetails(id);
+        var task = await NetworkManager.GetTournamentDetails(id);
         return task;
     }
 }

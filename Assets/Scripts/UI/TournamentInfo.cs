@@ -5,7 +5,7 @@ using Model;
 
 namespace UI
 {
-    public class TournamentInfo : MonoBehaviour
+    public class TournamentInfo : WindowBase
     {
         [SerializeField]
         private Button topCloseButton;
@@ -41,6 +41,30 @@ namespace UI
                 participantRenderer.transform.SetParent(renderersContainer, false);   
                 participantRenderer.Init(participant);
             }
+        }
+
+        private void OnEnable() 
+        {
+            infoButton.onClick.AddListener(OnInfoButtonClick);
+            topCloseButton.onClick.AddListener(OnCloseButtonClick);
+            bottomCloseButton.onClick.AddListener(OnCloseButtonClick);
+        }
+
+        private void OnDisable() 
+        {
+            infoButton.onClick.RemoveAllListeners();
+            topCloseButton.onClick.RemoveAllListeners();
+            bottomCloseButton.onClick.RemoveAllListeners();
+        }
+
+        private void OnCloseButtonClick()
+        {
+            gameObject.SetActive(false);
+        }
+
+        private void OnInfoButtonClick()
+        {
+
         }
     }
 }
