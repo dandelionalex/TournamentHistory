@@ -44,12 +44,11 @@ namespace Logic
 
         private async void OnRequestForLeaderoard( string id )
         {
-            //show loading screen
+            uniManager.ShowWindow<Loader>();
             var model = await LoadLeaderboardMenu(id);
-            //hide loading scree
+            uniManager.CloseWindow<Loader>();
             var completedTournamentsWindow = uniManager
                     .ShowWindow<TournamentInfo>( new TournamentInfo.TournamentInfoData(model) );
-            
         }
 
         private async Task<TournamentExtendedModel> LoadLeaderboardMenu(string leaderBoardId)
