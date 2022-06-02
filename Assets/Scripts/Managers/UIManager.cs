@@ -10,15 +10,28 @@ namespace Managers
         [SerializeField] 
         private List<WindowBase> windows; 
 
-        public void ShowWindow<T> ()
-        {
-            var win = windows.FirstOrDefault(t => t.GetType() == typeof(T));
-            Debug.Log($"window is {win}");
+        private List<WindowBase> openedWindows = new List<WindowBase>();
 
-            if(win == null)
+        public void ShowWindow<T> (WindowData data = null)
+        {
+            var winPrefab = windows.FirstOrDefault(t => t.GetType() == typeof(T));
+            if(winPrefab == null)
                 return;
 
-            Instantiate(win, transform, false);
+            var win =  Instantiate(winPrefab, transform, false);
+            win.Init(data);
+
+            openedWindows.Add(win);
+        }
+
+        public void CloseWindow<T> ()
+        {
+            var windowInstance = openedWindows.FirstOrDefault(t => t.GetType() == typeof(T));
+            if(windowInstance == null)
+                return;
+
+            openedWindows.Remove(windowInstance);
+            Destroy(windowInstance.gameObject);    
         }
     }
 }

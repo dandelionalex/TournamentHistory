@@ -35,6 +35,10 @@ namespace UI
         {
             positionInRate.text = "1";
             tournamentName.text = tournament.DisplayName;
+            participants.text = $"{tournament.ParticipantsCount} Players";
+            Debug.Log($"time {tournament.CreationTime.Year} {tournament.CreationTime.Month} {tournament.CreationTime.Date} ");
+            tournamentDate.text = tournament.CreationTime.ToString("MM/dd/yy");
+
             if( tournament.PrizeAmount > 0 )
             {
                 claimButton.gameObject.SetActive(true);

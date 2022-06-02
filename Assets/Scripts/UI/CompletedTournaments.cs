@@ -12,14 +12,28 @@ namespace UI
         [SerializeField]
         private Transform renderersContainer;
 
-        public void Init( List<TournamentModel> tournaments)
+        public override void Init( WindowData windowData )
         {
+            if(windowData == null && !(windowData is CompletedTournamentsData))    
+                return;
+
+            var tournaments = (windowData as CompletedTournamentsData).Tournaments;
+
             foreach(var tournament in tournaments)
             {
                 var tournamentRenderer = Instantiate(tounamentRendererPrefab);
+                tournamentRenderer.Init(tournament);
                 tournamentRenderer.transform.SetParent(renderersContainer, false);
+            }
+        }
+
+        public class CompletedTournamentsData : WindowData
+        {
+            public List<TournamentModel> Tournaments {get;}
+            public CompletedTournamentsData(List<TournamentModel> tournaments)
+            {
+                Tournaments = tournaments;
             }
         }
     }
 }
-

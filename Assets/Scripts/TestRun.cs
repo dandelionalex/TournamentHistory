@@ -33,7 +33,7 @@ public class TestRun : MonoBehaviour
             modelList.Add(new TournamentModel(tournametDto));
         }
 
-        completedTournament.Init(modelList);
+        completedTournament.Init( new CompletedTournaments.CompletedTournamentsData( modelList ) );
     }
 
     [ContextMenu("LoadDefaultTournament")]

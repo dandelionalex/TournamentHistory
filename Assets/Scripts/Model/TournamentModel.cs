@@ -24,7 +24,7 @@ namespace Model
         private DateTime UnixTimeToDateTime(long unixtime)
         {
             System.DateTime dtDateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, System.DateTimeKind.Utc);
-            dtDateTime = dtDateTime.AddMilliseconds(unixtime).ToLocalTime();
+            dtDateTime = dtDateTime.AddSeconds(unixtime).ToLocalTime();
             return dtDateTime;
         }
     }
