@@ -2,6 +2,7 @@ using UnityEngine;
 using Model;
 using TMPro;
 using UnityEngine.UI;
+using Config;
 
 namespace UI
 {
@@ -25,9 +26,14 @@ namespace UI
         [SerializeField]
         private TMP_Text prize;
 
+        [SerializeField]
+        private IconsList iconsList;
+
         public void Init(ParticipantModel model)
         {
-
+            scorePosition.text = model.ScorePosition.ToString();
+            Debug.Log($"icon is: {model.AvatarId}");
+            avatar.sprite = iconsList.GetIcon(model.AvatarId);
         }
     }
 }
