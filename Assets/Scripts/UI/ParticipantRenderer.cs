@@ -11,11 +11,20 @@ namespace UI
         private TMP_Text scorePosition;
 
         [SerializeField]
+        private Image avatar;
+
+        [SerializeField]
+        private TMP_Text nickName;
+
+        [SerializeField]
         private TMP_Text score;
 
         [SerializeField]
-        private Image avatar;
-        
+        private GameObject prizeObject;    
+
+        [SerializeField]
+        private TMP_Text prize;
+
         public void Init(ParticipantModel model)
         {
 

@@ -2,7 +2,7 @@ namespace Dto.TournamentDetails
 {
     public class AvatarImage 
     {
-        public string Type;
-        public string ID;
+        public string Type { get; }
+        public int AvatarId { get; }
     }
 }

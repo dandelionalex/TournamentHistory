@@ -1,9 +1,9 @@
 using UnityEngine;
 using Newtonsoft.Json;
-using Dto.TournamentHistory;
 using Model;
 using UI;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 public class TestRun : MonoBehaviour
 {
@@ -13,14 +13,17 @@ public class TestRun : MonoBehaviour
     [SerializeField]
     private TournamentInfo tournamentInfo;
 
-    [ContextMenu("LoadData")]
+    [SerializeField]
+    private string leaderBoardId = "dab1bbcf-bd41-4c9c-b0c5-2af05dac9f4d";
+
+    [ContextMenu("LoadTournamentList")]
     private async void LoadData()
     {
         var task = NetworkLogic.GetListAsync();
         await task;
 
         Debug.Log($"task {task.Result}");
-        var converted = JsonConvert.DeserializeObject<Root>(task.Result);
+        var converted = JsonConvert.DeserializeObject<Dto.TournamentHistory.Root>(task.Result);
         var tournaments = converted.Content.tournaments;
         var modelList = new List<TournamentModel>();
         foreach(var tournametDto in tournaments)
@@ -30,5 +33,23 @@ public class TestRun : MonoBehaviour
         }
 
         completedTournament.Init(modelList);
+    }
+
+    [ContextMenu("LoadDefaultTournament")]
+    private async void LoadLeaderboardMenu()
+    {
+        var task = LoadLeaderboard(leaderBoardId);
+        await task;
+        var converted = JsonConvert.DeserializeObject<Dto.TournamentDetails.Root>(task.Result);
+        Debug.Log($"converted {converted}");
+        var model = new TournamentExtendedModel(converted.Content.TournamentDetails);
+        tournamentInfo.gameObject.SetActive(true);
+        tournamentInfo.Init(model);
+    }
+
+    private async Task<string> LoadLeaderboard(string id)
+    {
+        var task = await NetworkLogic.GetTournamentDetails(id);
+        return task;
     }
 }

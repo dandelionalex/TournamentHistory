@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Model;
 
 namespace UI
 {
@@ -27,9 +28,19 @@ namespace UI
         [SerializeField]
         private ParticipantRenderer participantRendererPrefabOther;
 
-        public void Init()
+        public void Init(TournamentExtendedModel tournamentModel)
         {
+            foreach(var participant in tournamentModel.Participants)
+            {
+                ParticipantRenderer participantRenderer = null;
+                if(participant.IsYou)
+                    participantRenderer = Instantiate(participantRendererPrefabMy);
+                else
+                    participantRenderer = Instantiate(participantRendererPrefabOther);
 
+                participantRenderer.transform.SetParent(renderersContainer, false);   
+                participantRenderer.Init(participant);
+            }
         }
     }
 }

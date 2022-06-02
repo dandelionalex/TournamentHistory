@@ -949,6 +949,7 @@ GameObject:
   - component: {fileID: 2421616081144862956}
   - component: {fileID: 3957843825196974603}
   - component: {fileID: 6736648465063411612}
+  - component: {fileID: 2048132700556666824}
   m_Layer: 5
   m_Name: ParticipantRendererMe
   m_TagString: Untagged
@@ -1019,3 +1020,21 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &2048132700556666824
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9105998618613358381}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a6c133b33316499ebb5bb0d71c40616, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scorePosition: {fileID: 6877528681607515309}
+  avatar: {fileID: 5312272516949178544}
+  nickName: {fileID: 5522801286353107736}
+  score: {fileID: 4159791149595881248}
+  prizeObject: {fileID: 3879451824948039820}
+  prize: {fileID: 3055034092120246377}

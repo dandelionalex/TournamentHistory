@@ -1,5 +1,3 @@
-using UnityEngine;
-
 namespace Dto.TournamentDetails
 {
     public class Participant 
