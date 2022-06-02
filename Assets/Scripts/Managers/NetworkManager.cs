@@ -29,7 +29,6 @@ namespace Managers
             while(!operation.isDone)
                 await Task.Yield();
 
-            //webRequest.isNetworkError || webRequest.isHttpError
             if(webRequest.result == UnityWebRequest.Result.Success)
             {
                 Debug.Log($"SUCCESS {webRequest.downloadHandler.text}");    
@@ -37,6 +36,7 @@ namespace Managers
             else
             {
                 Debug.Log($"FAILED {webRequest.error}");
+                return string.Empty;
             }    
             
             return webRequest.downloadHandler.text; 
