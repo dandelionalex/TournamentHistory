@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using Model;
+using System;
 
 namespace UI
 {
@@ -12,6 +13,8 @@ namespace UI
         [SerializeField]
         private Transform renderersContainer;
 
+        public Action<string> OnRequestForLeaderoard;
+
         public override void Init( WindowData windowData )
         {
             if(windowData == null && !(windowData is CompletedTournamentsData))    
@@ -22,7 +25,9 @@ namespace UI
             foreach(var tournament in tournaments)
             {
                 var tournamentRenderer = Instantiate(tounamentRendererPrefab);
-                tournamentRenderer.Init(tournament);
+                tournamentRenderer.Init(tournament, id => { 
+                    OnRequestForLeaderoard?.Invoke(id);
+                });
                 tournamentRenderer.transform.SetParent(renderersContainer, false);
             }
         }

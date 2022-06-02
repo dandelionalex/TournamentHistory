@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using Model;
+using Managers;
 
 namespace UI
 {
@@ -28,8 +29,13 @@ namespace UI
         [SerializeField]
         private ParticipantRenderer participantRendererPrefabOther;
 
-        public void Init(TournamentExtendedModel tournamentModel)
+        public override void Init(WindowData windowData)
         {
+            if(windowData == null && !(windowData is TournamentInfoData))    
+                return;
+
+            var tournamentModel = (windowData as TournamentInfoData).Tournament;
+
             foreach(var participant in tournamentModel.Participants)
             {
                 ParticipantRenderer participantRenderer = null;
@@ -59,12 +65,21 @@ namespace UI
 
         private void OnCloseButtonClick()
         {
-            gameObject.SetActive(false);
+            FindObjectOfType<UIManager>().CloseWindow<TournamentInfo>();
         }
 
         private void OnInfoButtonClick()
         {
 
+        }
+
+        public class TournamentInfoData : WindowData
+        {
+            public TournamentExtendedModel Tournament {get;}
+            public TournamentInfoData(TournamentExtendedModel tournament)
+            {
+                Tournament = tournament;
+            }
         }
     }
 }

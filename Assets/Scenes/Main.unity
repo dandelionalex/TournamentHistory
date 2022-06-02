@@ -462,7 +462,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7024088229027558078, guid: 6af3db649594441d9a98ffac0332d76a, type: 3}
       propertyPath: m_Name
-      value: LoadingScreen
+      value: PreloaderScreen
       objectReference: {fileID: 0}
     - target: {fileID: 7024088229027558079, guid: 6af3db649594441d9a98ffac0332d76a, type: 3}
       propertyPath: m_Pivot.x

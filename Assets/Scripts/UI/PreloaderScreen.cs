@@ -3,7 +3,7 @@ using TMPro;
 
 namespace UI
 {
-    public class LoadingScreen : WindowBase
+    public class PreloaderScreen : WindowBase
     {
         [SerializeField]
         private TMP_Text description;

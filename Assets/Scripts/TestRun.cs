@@ -45,7 +45,7 @@ public class TestRun : MonoBehaviour
         Debug.Log($"converted {converted}");
         var model = new TournamentExtendedModel(converted.Content.TournamentDetails);
         tournamentInfo.gameObject.SetActive(true);
-        tournamentInfo.Init(model);
+        tournamentInfo.Init( new TournamentInfo.TournamentInfoData( model) );
     }
 
     private async Task<string> LoadLeaderboard(string id)

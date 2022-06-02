@@ -17,6 +17,7 @@ namespace Managers
         public static async Task<string> GetTournamentDetails(string tournamentId)
         {
             var url = $"{detailsLink}{tournamentId}.json";
+            Debug.Log($"load from url: {url}");
             return await GetData(url);
         }
 

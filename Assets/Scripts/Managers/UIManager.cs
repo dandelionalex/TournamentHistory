@@ -12,16 +12,17 @@ namespace Managers
 
         private List<WindowBase> openedWindows = new List<WindowBase>();
 
-        public void ShowWindow<T> (WindowData data = null)
+        public WindowBase ShowWindow<T> (WindowData data = null)
         {
             var winPrefab = windows.FirstOrDefault(t => t.GetType() == typeof(T));
             if(winPrefab == null)
-                return;
+                return null;
 
             var win =  Instantiate(winPrefab, transform, false);
             win.Init(data);
 
             openedWindows.Add(win);
+            return win;
         }
 
         public void CloseWindow<T> ()

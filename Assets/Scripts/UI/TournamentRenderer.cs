@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using Model;
+using System;
 
 namespace UI
 {
@@ -31,12 +32,16 @@ namespace UI
         [SerializeField]
         private TMP_Text prizeAmount;
 
-        public void Init( TournamentModel tournament )
+        private Action<string> _leaderboardClicked;
+        private TournamentModel _tournament;
+        public void Init( TournamentModel tournament, Action<string> leaderboardClicked )
         {
+            _leaderboardClicked = leaderboardClicked;
+            _tournament = tournament;
+
             positionInRate.text = "1";
             tournamentName.text = tournament.DisplayName;
             participants.text = $"{tournament.ParticipantsCount} Players";
-            Debug.Log($"time {tournament.CreationTime.Year} {tournament.CreationTime.Month} {tournament.CreationTime.Date} ");
             tournamentDate.text = tournament.CreationTime.ToString("MM/dd/yy");
 
             if( tournament.PrizeAmount > 0 )
@@ -66,12 +71,12 @@ namespace UI
 
         private void OnLeaderbordButtonClick()
         {
-
+            _leaderboardClicked.Invoke(_tournament.Id);
         }
 
         private void OnClaimButtonClick()
         {
-
+            Debug.Log("claim for reward");
         }
     }
 }
