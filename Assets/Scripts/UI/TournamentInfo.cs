@@ -21,6 +21,9 @@ namespace UI
         private Button bottomCloseButton;
 
         [SerializeField]
+        private Button claimButtom;
+
+        [SerializeField]
         private Transform renderersContainer;
 
         [SerializeField]
@@ -29,12 +32,26 @@ namespace UI
         [SerializeField]
         private ParticipantRenderer participantRendererPrefabOther;
 
+        [SerializeField]
+        private RectTransform listViewport;
+
         public override void Init(WindowData windowData)
         {
             if(windowData == null && !(windowData is TournamentInfoData))    
                 return;
 
             var tournamentModel = (windowData as TournamentInfoData).Tournament;
+           
+            if(!string.IsNullOrEmpty( tournamentModel.ClaimId) )
+            {
+                claimButtom.gameObject.SetActive(true);
+                listViewport.anchorMin = new Vector2(0, 0.182f);
+            }
+            else
+            {
+                claimButtom.gameObject.SetActive(false);
+                listViewport.anchorMin = new Vector2(0, 0.103f);
+            }  
 
             foreach(var participant in tournamentModel.Participants)
             {
